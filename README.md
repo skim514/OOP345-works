@@ -1,5 +1,5 @@
 # OOP345-works
-Suna Kim
-Student Num: 104690227
-Email: skim514@myseneca.ca
-OOP345NEE
+* Suna Kim<br/>
+* Student Num: 104690227<br/>
+* Email: skim514@myseneca.ca<br/>
+* OOP345NEE
