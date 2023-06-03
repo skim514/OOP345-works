@@ -24,20 +24,12 @@
 namespace sdds {
 	template <typename T, int CAPACITY>
 	class Queue {
-		T m_queue[CAPACITY];
-		unsigned int m_number;
+		T m_queue[CAPACITY] {};
+		unsigned int m_number {};
 		static T m_dummy;
 
 	public:
-		Queue()
-		{
-			for (unsigned int i = 0; i < CAPACITY; i++)
-			{
-				m_queue[i] = T();
-			}
-			m_number = 0u;
-		}
-
+		Queue() {}
 
 		bool push(const T& item)
 		{
