@@ -20,6 +20,7 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 #include <iostream>
+#include "Dictionary.h"
 
 namespace sdds {
 	template <typename T, int CAPACITY>
@@ -82,6 +83,8 @@ namespace sdds {
 	{
 		return queue.display(os);
 	}
+	template<>
+	Dictionary Queue<Dictionary, 100u>::m_dummy{ "Empty Term", "Empty Substitute" };
 }
 
 #endif
