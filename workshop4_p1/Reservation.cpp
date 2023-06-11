@@ -93,7 +93,7 @@ namespace sdds {
 		}
 
 		foundHour = res.find(needFind, foundDay + 1);
-		if (foundHour != string::npos)
+		if (foundHour == string::npos)
 		{
 			tmpHour = res.substr(foundDay + 1, res.length());
 			m_hour = stoi(tmpHour);			
@@ -102,30 +102,42 @@ namespace sdds {
 
 	ostream& operator<<(ostream& ostr, const Reservation& res)
 	{
-		ostr << "Reservation " << std::setw(10) << std::right << res.m_reservationID
-			<< ":" << std::setw(20) << std::setfill(' ') << std::right << res.m_reservationName << "  ";
-		ostr << "<" << res.m_customerEmail << std::setw(20) << std::left << ">"; ostr.unsetf(ios::left);
+		ostr << "Reservation ";
+		ostr.setf(ios::right); ostr.fill(' '); ostr.width(10);
+		ostr << res.m_reservationID << ": "; ostr.unsetf(ios::right);
 
-		if (res.m_hour >= 6 && res.m_hour <= 9) {
-			ostr << "Breakfast on day " << res.m_day << " @ " << res.m_hour << ":00";
+		ostr.setf(ios::right); ostr.fill(' '); ostr.width(20);
+		ostr << res.m_reservationName; ostr.unsetf(ios::right);
+
+		ostr << "  ";
+		ostr.setf(ios::left); ostr.fill(' '); ostr.width(20);
+		ostr << "<" + res.m_customerEmail + ">"; ostr.unsetf(ios::left);
+
+		if (res.m_hour >= 6 && res.m_hour <= 9)
+		{
+			ostr << "    Breakfast on day " << res.m_day << " @ " << res.m_hour << ":00";
 		}
-		else if (res.m_hour >= 11 && res.m_hour <= 15) {
-			ostr << "Lunch on day " << res.m_day << " @ " << res.m_hour << ":00";
+		else if (res.m_hour >= 11 && res.m_hour <= 15)
+		{
+			ostr << "    Lunch on day " << res.m_day << " @ " << res.m_hour << ":00";
 		}
-		else if (res.m_hour >= 17 && res.m_hour <= 21) {
-			ostr << "Dinner on day " << res.m_day << " @ " << res.m_hour << ":00";
+		else if (res.m_hour >= 17 && res.m_hour <= 21)
+		{
+			ostr << "    Dinner on day " << res.m_day << " @ " << res.m_hour << ":00";
 		}
-		else {
-			ostr << "Drinks on day " << res.m_day << " @ " << res.m_hour << ":00";
+		else
+		{
+			ostr << "    Drinks on day " << res.m_day << " @ " << res.m_hour << ":00";
 		}
 		ostr << " for " << res.m_numOfPeople;
-		if (res.m_numOfPeople == 1) {
+		if (res.m_numOfPeople == 1)
+		{
 			ostr << " person.";
 		}
-		else {
+		else
+		{
 			ostr << " people.";
 		}
-		
 		ostr << std::endl;
 		return ostr;
 	}
